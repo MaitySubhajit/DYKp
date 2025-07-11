@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <style>
+         td, th {
+         border: 0px solid black;
+         }
+         img{
+         padding: 5px;
+         }
+      </style>
+      <title>Doodle Your Keypoints</title>
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+      <!--  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+         <script>
+           window.dataLayer = window.dataLayer || [];
+         
+           function gtag() {
+             dataLayer.push(arguments);
+           }
+         
+           gtag('js', new Date());
+         
+           gtag('config', 'G-PYVRSFMDRL');
+         
+         
+         
+         </script> -->
+      <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+         rel="stylesheet">
+      <link rel="stylesheet" href="./static/css/bulma.min.css">
+      <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+      <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+      <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+      <link rel="stylesheet"
+         href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+      <link rel="stylesheet" href="./static/css/index.css">
+      <link rel="icon" href="./static/images/site_icon64.png">
+      <link rel="stylesheet" href="https://unpkg.com/image-compare-viewer/dist/image-compare-viewer.min.css">
+      <link rel="stylesheet" href="css/app.css">
+      <link rel="stylesheet" href="css/bootstrap.min.css">
+      <script src="https://unpkg.com/image-compare-viewer/dist/image-compare-viewer.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script defer src="./static/js/fontawesome.all.min.js"></script>
+      <script src="./static/js/bulma-carousel.min.js"></script>
+      <script src="./static/js/bulma-slider.min.js"></script>
+      <script src="./static/js/index.js"></script>
+      <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+      <style>
+         /* publication-section {
+            padding: 1rem 0.75rem;
+        } */
+
+        /* Custom table styles to match the reference */
+        .table-container {
+            box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1), 0 0px 0 1px rgba(10, 10, 10, 0.02);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .table th,
+        .table td {
+            /* As per the reference file, remove borders */
+            border: 0px solid black;
+            text-align: center !important; /* Center align all text */
+            vertical-align: middle; /* Vertically center content in cells */
+        }
+
+        .table thead th {
+            /* Style for the main headers */
+            font-weight: 600;
+            color: #363636; /* Bulma's default title color */
+        }
+        
+        .table tbody tr:nth-child(even) {
+            /* Subtle striping for readability */
+            background-color: #fafafa;
+        }
+
+        /* Highlighting for the 'Mean' columns */
+        .mean-col {
+            background-color: #e9e9e9 !important; /* A slightly darker grey to stand out */
+            font-weight: 700;
+        }
+
+        /* Styling for the row group headers (Seen, Unseen, Base, Novel) */
+        .row-header {
+            font-weight: 600;
+            text-align: center; /* Left-align the first-column headers */
+            vertical-align: middle !important;
+            padding-left: 0.5em !important;
+            background-color: #f9f9f9;
+        }
+        
+        /* Add a separator line between major groups */
+        .group-separator {
+            border-bottom: 2px solid #dbdbdb;
+        }
+      </style>
+   </head>
+   <body>
+   <section class="hero">
+      <div class="hero-body">
+         <div class="container is-max-desktop">
+            <div class="columns is-centered">
+               <div class="column has-text-centered">
+                  <h1 class="title is-1 publication-title", style="color:rgb(205, 81, 36);">Doodle Your Keypoints:</h1>
+                  <h1 class="title is-4 publication-title">Sketch-Based Few-Shot Keypoint Detection</h1>
+                  <div class="is-size-5 publication-authors">
+                     <span class="author-block">
+                     <a href="https://subhajitmaity.me/">Subhajit Maity</a><sup>1</sup>,</span>
+                     <span class="author-block">
+                     <a href="https://ayankumarbhunia.github.io/">Ayan Kumar Bhunia</a><sup>2</sup>,</span>
+                     <span class="author-block">
+                     <a href="https://subhadeepkoley.github.io/">Subhadeep Koley</a><sup>2</sup>,</span>
+                     <span class="author-block">
+                     <a href="https://www.pinakinathc.me/">Pinaki Nath Chowdhury</a><sup>2</sup>,</span>
+                     <span class="author-block">
+                     <a href="https://aneeshan95.github.io/">Aneeshan Sain</a><sup>2</sup>,</span>
+                     <span class="author-block">
+                     <a href="https://www.surrey.ac.uk/people/yi-zhe-song">Yi-Zhe Song</a><sup>2</sup></span>
+                  </div>
+                  <div class="is-size-5 publication-authors">
+                     <span class="author-block"><sup>1</sup>Department of Computer Science, University of Central Florida</span>
+                     <span class="author-block"><sup>2</sup>SketchX, CVSSP, University of Surrey, United Kingdom</span>
+                  </div>
+                     <div class="column has-text-centered">
+                     <a href="https://iccv.thecvf.com/">
+                     <img src="./static/images/ICCV_logo.svg" alt="ICCV 2025" width="250px" height="auto">
+                     </a>
+                     </span>
+                     </div>
+                  <div class="column has-text-centered">
+                     <div class="publication-links">
+                        <!-- PDF Link. -->
+                        <span class="link-block">
+                        <a href="https://arxiv.org/pdf/2507.07994"
+                           class="external-link button is-normal is-rounded is-dark">
+                        <span class="icon">
+                        <i class="fas fa-file-pdf"></i>
+                        </span>
+                        <span>Paper (PDF)</span>
+                        </a>
+                        </span>
+                        <span class="link-block">
+                        <a href="https://arxiv.org/abs/2507.07994"
+                           class="external-link button is-normal is-rounded is-dark">
+                        <span class="icon">
+                        <i class="ai ai-arxiv"></i>
+                        </span>
+                        <span>arXiv</span>
+                        </a>
+                        </span>
+                        <!-- Video Link. -->
+                        <!-- <span class="link-block">
+                        <a href="https://www.youtube.com/watch?v=k7xFbELpnv4"
+                           class="external-link button is-normal is-rounded is-dark">
+                        <span class="icon">
+                        <i class="fab fa-youtube"></i>
+                        </span>
+                        <span>Video (YouTube)</span>
+                        </a>
+                        </span> -->
+                        <!-- Code Link. -->
+                        <span class="link-block">
+                        <a href="https://github.com/MaitySubhajit/DYKp"
+                           class="external-link button is-normal is-rounded is-dark">
+                        <span class="icon">
+                        <i class="fab fa-github"></i>
+                        </span>
+                        <span>Code (Coming soon!)</span>
+                        </a>
+                        </span>
+                        <!-- Dataset Link. -->
+                        <!-- <span class="link-block">
+                        <a href="./static/images/CVPR2025_SketchDownTheFLOPs_FinalV4.png"
+                           class="external-link button is-normal is-rounded is-dark">
+                        <span class="icon">
+                        <i class="far fa-images"></i>
+                        </span>
+                        <span>Poster</span>
+                        </a>
+                        </span> -->
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+   <section class="hero teaser">
+      <div class="container is-max-desktop">
+         <div class="hero-body">
+            <img class="round" style="width:1500px" src="./static/images/DYKp_Banner.svg"/>
+            <h2 class="subtitle has-text-centered">
+               <span class="dnerf"></span>
+               Keypoint detection, usually approached in a supervised setting, along with cross-domain adaptation, can be set up in a few-shot paradigm by typically learning to localize novel keypoints from limited annotated photos, also adapting to novel classes. Unlike the existing works, we approach the problem in a cross-modal setup. (<em>right</em>) The proposed few-shot framework adapts to localize novel keypoints on photos of unseen classes given a few annotated sketches.
+            </h2>
+         </div>
+      </div>
+   </section>
+
+   <!-- Paper video. -->
+   <!-- <section class="section">
+   <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <div class="publication-video">
+          <iframe src="https://www.youtube.com/embed/8BeHuh6T5ZI?rel=0&amp;showinfo=0" frameborder="0" width="1500" height="300" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+   </div>
+   </section> -->
+   <!--/ Paper video. -->
+
+   <section class="section">
+   <div class="container is-max-desktop">
+   <!-- Abstract. -->
+   <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+         <h2 class="title is-3">Abstract</h2>
+         <div class="content has-text-justified">
+            <p>
+               Keypoint detection, integral to modern machine perception, faces challenges in few-shot learning, particularly when source data from the same distribution as the query is unavailable. This gap is addressed by leveraging sketches, a popular form of human expression, providing a source-free alternative. However, challenges arise in mastering cross-modal embeddings and handling user-specific sketch styles. Our proposed framework overcomes these hurdles with a prototypical setup, combined with a grid-based locator and prototypical domain adaptation. We also demonstrate success in few-shot convergence across novel keypoints and classes through extensive experiments.
+            </p>
+         </div>
+      </div>
+   </div>
+   </div>
+   </section>
+   
+    <!-- <section class="hero teaser">
+      <div class="container is-max-desktop">
+         <div class="hero-body">
+		<iframe width="720" height="480"
+			src="https://www.youtube.com/embed/k7xFbELpnv4?">
+		</iframe>
+            <h2 class="subtitle has-text-centered">
+               <span class="dnerf"></span>
+            </h2>
+         </div>
+      </div>
+   </section> -->
+
+
+   <section class="section">
+      <div class="container is-max-desktop">
+      <!-- Abstract. -->
+      <div class="columns is-centered has-text-centered">
+         <div class="column is-full">
+            <h2 class="title is-3">Architecture</h2>
+            <div class="content has-text-justified">
+               </h2>
+               <center>
+                  <img src="./static/images/DYKp_Arch.svg" alt="Architecture" border=0 width=1500></img>
+               </center>
+               <h5 class="subtitle has-text-centered">
+                  Overview of the proposed few-shot key-point detection framework that processes sketches or edgemaps in the support set and photos in the query set. It employs an encoder to extract deep feature maps followed by the derivation of keypoint embeddings through Gaussian Pooling. Support keypoint prototypes are constructed by averaging keypoint embeddings after disentangling style information through the de-stylization network. Support-query correlation is performed by a point-to-point multiplication of prototype and a query feature map, and subsequently a descriptor network formulates a query descriptor, which is used for localization by the GBL module.
+               </h5>
+               <br>
+               &nbsp;
+               <br> 
+               <center>
+                  <img src="./static/images/DYKp_DeStyle.svg" alt="Architecture de-stylization network" border=0 width=500/>
+                 </center>
+                 <h5 class="subtitle has-text-centered">
+                 The design of the de-stylization network \(Z\) to disentangle the styles fusing global context to local keypoint embeddings.
+                 </h5>
+            </div>
+         </div>
+      </div>
+      </div>
+   </section>
+
+   <section class="section">
+      <div class="container is-max-desktop">
+      <!-- Abstract. -->
+      <div class="columns is-centered has-text-centered">
+         <div class="column is-three-fifths">
+            <h2 class="title is-3">Dataset Visualization</h2>
+            <div class="content has-text-justified">
+               </h2>
+               <center>
+                  <img src="./static/images/DYKp_Visuals_SQ.svg" alt="Dataset" border=0 height=500></img>
+               </center>
+               <h5 class="subtitle has-text-centered">
+                  Sample support and query for training (<em>top</em>) and evaluation (<em>bottom</em>) for all evaluation settings. The support set is composed of edgemaps of the photos obtained from edge detectors.
+               </h5>
+            </div>
+         </div>
+      </div>
+      </div>
+   </section>
+
+   <section class="hero">
+   <div class="hero-body">
+   <div class="container is-max-desktop">
+      <!-- Abstract. -->
+      <div class="columns is-centered has-text-centered">
+         <div class="column">
+            <h2 class="title is-3">Results</h2>
+            <div class="content has-text-justified">
+
+               <div class="table-container">
+                  <table class="table is-fullwidth">
+                     <thead>
+                           <!-- Main Header Row -->
+                           <tr>
+                              <th class="row-header" rowspan="2">Class</th>
+                              <th class="row-header" rowspan="2">Keypoints</th>
+                              <th class="row-header" rowspan="2">Methods</th>
+                              <th colspan="6" class="has-text-centered">PCK@0.1 on Animal Pose</th>
+                              <th colspan="6" class="has-text-centered">PCK@0.1 on Animal Kingdom</th>
+                           </tr>
+                           <!-- Sub-header Row for animal types -->
+                           <tr>
+                              <th>Cat</th>
+                              <th>Cow</th>
+                              <th>Dog</th>
+                              <th>Horse</th>
+                              <th>Sheep</th>
+                              <th class="mean-col">Mean</th>
+                              <th>Mammal</th>
+                              <th>Amphibian</th>
+                              <th>Reptile</th>
+                              <th>Bird</th>
+                              <th>Fish</th>
+                              <th class="mean-col">Mean</th>
+                           </tr>
+                     </thead>
+                     <tbody>
+                           <!-- SEEN Group -->
+                           <tr>
+                              <td rowspan="6" class="row-header">Seen</td>
+                              <td rowspan="3" class="row-header">Base</td>
+                              <td>B-Vanilla</td>
+                              <td>54.12</td>
+                              <td>39.27</td>
+                              <td>44.65</td>
+                              <td>45.58</td>
+                              <td>37.17</td>
+                              <td class="mean-col">44.16</td>
+                              <td>22.32</td>
+                              <td>21.07</td>
+                              <td>18.94</td>
+                              <td>21.77</td>
+                              <td>18.19</td>
+                              <td class="mean-col">20.46</td>
+                           </tr>
+                           <tr>
+                              <td>FSKD</td>
+                              <td>58.95</td>
+                              <td>44.61</td>
+                              <td>49.53</td>
+                              <td>50.21</td>
+                              <td>40.47</td>
+                              <td class="mean-col">48.75</td>
+                              <td>25.52</td>
+                              <td>24.42</td>
+                              <td>21.81</td>
+                              <td>25.73</td>
+                              <td>22.24</td>
+                              <td class="mean-col">23.94</td>
+                           </tr>
+                           <tr class="group-separator">
+                              <td><strong>Proposed</strong></td>
+                              <td><strong>67.34</strong></td>
+                              <td><strong>49.89</strong></td>
+                              <td><strong>56.28</strong></td>
+                              <td><strong>56.35</strong></td>
+                              <td><strong>45.65</strong></td>
+                              <td class="mean-col"><strong>55.10</strong></td>
+                              <td><strong>31.31</strong></td>
+                              <td><strong>29.93</strong></td>
+                              <td><strong>28.41</strong></td>
+                              <td><strong>30.88</strong></td>
+                              <td><strong>27.87</strong></td>
+                              <td class="mean-col"><strong>29.68</strong></td>
+                           </tr>
+                           <tr>
+                              <td rowspan="3" class="row-header">Novel</td>
+                              <td>B-Vanilla</td>
+                              <td>24.70</td>
+                              <td>15.62</td>
+                              <td>19.08</td>
+                              <td>12.45</td>
+                              <td>18.44</td>
+                              <td class="mean-col">18.06</td>
+                              <td>9.67</td>
+                              <td>7.24</td>
+                              <td>6.55</td>
+                              <td>8.41</td>
+                              <td>4.96</td>
+                              <td class="mean-col">7.37</td>
+                           </tr>
+                           <tr>
+                              <td>FSKD</td>
+                              <td>47.70</td>
+                              <td>35.44</td>
+                              <td>39.81</td>
+                              <td>35.42</td>
+                              <td>31.59</td>
+                              <td class="mean-col">37.99</td>
+                              <td>18.89</td>
+                              <td>17.39</td>
+                              <td>16.72</td>
+                              <td>19.23</td>
+                              <td>15.94</td>
+                              <td class="mean-col">17.63</td>
+                           </tr>
+                           <tr class="group-separator">
+                              <td><strong>Proposed</strong></td>
+                              <td><strong>55.69</strong></td>
+                              <td><strong>43.09</strong></td>
+                              <td><strong>46.58</strong></td>
+                              <td><strong>43.94</strong></td>
+                              <td><strong>36.39</strong></td>
+                              <td class="mean-col"><strong>45.14</strong></td>
+                              <td><strong>25.05</strong></td>
+                              <td><strong>23.27</strong></td>
+                              <td><strong>22.56</strong></td>
+                              <td><strong>24.04</strong></td>
+                              <td><strong>21.78</strong></td>
+                              <td class="mean-col"><strong>23.34</strong></td>
+                           </tr>
+                           <!-- UNSEEN Group -->
+                           <tr>
+                              <td rowspan="6" class="row-header">Unseen</td>
+                              <td rowspan="3" class="row-header">Base</td>
+                              <td>B-Vanilla</td>
+                              <td>43.03</td>
+                              <td>40.31</td>
+                              <td>36.28</td>
+                              <td>44.72</td>
+                              <td>38.03</td>
+                              <td class="mean-col">40.47</td>
+                              <td>12.83</td>
+                              <td>14.12</td>
+                              <td>12.57</td>
+                              <td>13.68</td>
+                              <td>12.41</td>
+                              <td class="mean-col">13.12</td>
+                           </tr>
+                           <tr>
+                              <td>FSKD</td>
+                              <td>41.54</td>
+                              <td>38.10</td>
+                              <td>33.72</td>
+                              <td>41.02</td>
+                              <td>36.30</td>
+                              <td class="mean-col">38.14</td>
+                              <td>14.86</td>
+                              <td>14.28</td>
+                              <td>13.79</td>
+                              <td>15.65</td>
+                              <td>12.16</td>
+                              <td class="mean-col">14.15</td>
+                           </tr>
+                           <tr class="group-separator">
+                              <td><strong>Proposed</strong></td>
+                              <td><strong>47.36</strong></td>
+                              <td><strong>42.97</strong></td>
+                              <td><strong>38.30</strong></td>
+                              <td><strong>46.17</strong></td>
+                              <td><strong>41.03</strong></td>
+                              <td class="mean-col"><strong>43.17</strong></td>
+                              <td><strong>21.98</strong></td>
+                              <td><strong>20.15</strong></td>
+                              <td><strong>18.96</strong></td>
+                              <td><strong>21.52</strong></td>
+                              <td><strong>17.19</strong></td>
+                              <td class="mean-col"><strong>19.96</strong></td>
+                           </tr>
+                           <tr>
+                              <td rowspan="3" class="row-header">Novel</td>
+                              <td>B-Vanilla</td>
+                              <td>22.71</td>
+                              <td>15.56</td>
+                              <td>16.92</td>
+                              <td>13.58</td>
+                              <td>18.18</td>
+                              <td class="mean-col">17.39</td>
+                              <td>7.26</td>
+                              <td>5.12</td>
+                              <td>3.93</td>
+                              <td>5.69</td>
+                              <td>4.08</td>
+                              <td class="mean-col">5.22</td>
+                           </tr>
+                           <tr>
+                              <td>FSKD</td>
+                              <td>36.75</td>
+                              <td>35.76</td>
+                              <td>32.84</td>
+                              <td>32.66</td>
+                              <td>31.58</td>
+                              <td class="mean-col">33.92</td>
+                              <td>10.96</td>
+                              <td>9.34</td>
+                              <td>9.68</td>
+                              <td>11.45</td>
+                              <td>8.86</td>
+                              <td class="mean-col">10.06</td>
+                           </tr>
+                           <tr>
+                              <td><strong>Proposed</strong></td>
+                              <td><strong>44.42</strong></td>
+                              <td><strong>40.13</strong></td>
+                              <td><strong>36.91</strong></td>
+                              <td><strong>37.77</strong></td>
+                              <td><strong>35.77</strong></td>
+                              <td class="mean-col"><strong>39.00</strong></td>
+                              <td><strong>16.48</strong></td>
+                              <td><strong>14.62</strong></td>
+                              <td><strong>13.76</strong></td>
+                              <td><strong>15.91</strong></td>
+                              <td><strong>11.33</strong></td>
+                              <td class="mean-col"><strong>14.42</strong></td>
+                           </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   </div>
+   </section>
+
+   <section class="hero">
+   <div class="hero-body">
+   <div class="container is-max-desktop">
+      <!-- Abstract. -->
+      <div class="columns is-centered has-text-centered">
+         <div class="column is-four-fifths">
+            <!-- <h2 class="title is-3">Results</h2> -->
+            <div class="content has-text-justified">
+               <center>
+               <img src="./static/images/DYKp_Visuals_results.svg" alt="Qualitative" border=0 height=300 width=1500/>
+               </center>
+               <h5 class="subtitle has-text-centered">
+               Visualising detection (⨯) and ground-truth (●) for novel keypoints for base classes (<em>top</em>) and unseen classes (<em>bottom</em>).
+               </h5>
+            </div>
+         </div>
+      </div>
+   </div>
+   </div>
+   </section>
+
+   <section class="hero">
+   <div class="hero-body">
+   <div class="container is-max-desktop">
+      <!-- Abstract. -->
+      <div class="columns is-centered has-text-centered">
+         <div class="column is-four-fifths">
+            <h2 class="title is-3">Results on Real Sketches</h2>
+            <div class="content has-text-justified">
+
+               <div class="table-container">
+                  <table class="table is-fullwidth">
+                     <thead>
+                           <!-- Main Header Row -->
+                           <tr>
+                              <th class="row-header" rowspan="2">Class</th>
+                              <th class="row-header" rowspan="2">Keypoints</th>
+                              <th class="row-header" rowspan="2">Support</th>
+                              <th colspan="6" class="has-text-centered">PCK@0.1 on Animal Pose</th>
+                           </tr>
+                           <!-- Sub-header Row for animal types -->
+                           <tr>
+                              <th>Cat</th>
+                              <th>Cow</th>
+                              <th>Dog</th>
+                              <th>Horse</th>
+                              <th>Sheep</th>
+                              <th class="mean-col">Mean</th>
+                           </tr>
+                     </thead>
+                     <tbody>
+                           <!-- SEEN Group -->
+                           <tr>
+                              <td rowspan="4" class="row-header">Seen</td>
+                              <td rowspan="2" class="row-header">Base</td>
+                              <td>Edgemap</td>
+                              <td>67.34</td>
+                              <td>49.89</td>
+                              <td>56.28</td>
+                              <td>56.35</td>
+                              <td>45.65</td>
+                              <td class="mean-col">55.10</td>
+                           </tr>
+                           <tr class="group-separator">
+                              <td>Sketch</td>
+                              <td>66.69</td>
+                              <td>45.79</td>
+                              <td>55.43</td>
+                              <td>56.13</td>
+                              <td>43.40</td>
+                              <td class="mean-col">53.29</td>
+                           </tr>
+                           <tr>
+                              <td rowspan="2" class="row-header">Novel</td>
+                              <td>Edgemap</td>
+                              <td>55.69</td>
+                              <td>43.09</td>
+                              <td>46.58</td>
+                              <td>43.94</td>
+                              <td>36.39</td>
+                              <td class="mean-col">45.14</td>
+                           </tr>
+                           <tr class="group-separator">
+                              <td>Sketch</td>
+                              <td>55.45</td>
+                              <td>42.96</td>
+                              <td>46.35</td>
+                              <td>43.88</td>
+                              <td>36.31</td>
+                              <td class="mean-col">44.99</td>
+                           </tr>
+                           <!-- UNSEEN Group -->
+                           <tr>
+                              <td rowspan="4" class="row-header">Unseen</td>
+                              <td rowspan="2" class="row-header">Base</td>
+                              <td>Edgemap</td>
+                              <td>47.36</td>
+                              <td>42.97</td>
+                              <td>38.30</td>
+                              <td>46.17</td>
+                              <td>41.03</td>
+                              <td class="mean-col">43.17</td>
+                           </tr>
+                           <tr class="group-separator">
+                              <td>Sketch</td>
+                              <td>45.90</td>
+                              <td>42.47</td>
+                              <td>37.82</td>
+                              <td>45.36</td>
+                              <td>40.45</td>
+                              <td class="mean-col">42.40</td>
+                           </tr>
+                           <tr>
+                              <td rowspan="2" class="row-header">Novel</td>
+                              <td>Edgemap</td>
+                              <td>44.42</td>
+                              <td>40.13</td>
+                              <td>36.91</td>
+                              <td>37.77</td>
+                              <td>35.77</td>
+                              <td class="mean-col">39.00</td>
+                           </tr>
+                           <tr>
+                              <td>Sketch</td>
+                              <td>43.79</td>
+                              <td>39.91</td>
+                              <td>36.17</td>
+                              <td>37.56</td>
+                              <td>35.02</td>
+                              <td class="mean-col">38.49</td>
+                           </tr>
+                     </tbody>
+                  </table>
+               </div>
+               <h5 class="subtitle has-text-centered">
+               Despite being trained on synthetic sketches or edgemaps, our framework generalizes well to real sketches, achieving comparable performance.
+               </h5>
+
+               <br>
+               &nbsp;
+               <br>
+               &nbsp;
+               <br>
+
+               <center>
+               <img src="./static/images/DYKp_Visuals_Sketch.svg" alt="Real Sketch" border=0 height=300 width=1500/>
+               </center>
+               <h5 class="subtitle has-text-centered">
+               Inference (⨯) with ground-truth (●) for base (<em>top</em>) and novel (<em>bottom</em>) keypoints with annotated sketch prompts.
+               </h5>
+            </div>
+         </div>
+      </div>
+   </div>
+   </div>
+   </section>
+
+
+   <section class="hero">
+   <div class="hero-body">
+   <div class="container is-max-desktop">
+      <!-- Abstract. -->
+      <div class="columns is-centered has-text-centered">
+         <div class="column is-four-fifths">
+            <h2 class="title is-3">Photo-based Few-shot Keypoint Detection</h2>
+            <div class="content has-text-justified">
+
+               <div class="table-container">
+                  <table class="table is-fullwidth">
+                     <thead>
+                           <!-- Main Header Row -->
+                           <tr>
+                              <th class="row-header" rowspan="2">Class</th>
+                              <th class="row-header" rowspan="2">Keypoints</th>
+                              <th class="row-header" rowspan="2">Method</th>
+                              <th colspan="6">PCK@0.1</th>
+                           </tr>
+                           <!-- Sub-header Row for animal types -->
+                           <tr>
+                              <th>Cat</th>
+                              <th>Cow</th>
+                              <th>Dog</th>
+                              <th>Horse</th>
+                              <th>Sheep</th>
+                              <th class="mean-col">Mean</th>
+                           </tr>
+                     </thead>
+                     <tbody>
+                           <!-- SEEN Group -->
+                           <tr>
+                              <td rowspan="6" class="row-header">Seen</td>
+                              <td rowspan="3" class="row-header">Base</td>
+                              <td>FSKD</td>
+                              <td>68.66</td>
+                              <td>52.70</td>
+                              <td>59.24</td>
+                              <td>58.53</td>
+                              <td>45.04</td>
+                              <td class="mean-col">56.83</td>
+                           </tr>
+                           <tr>
+                              <td>Ours</td>
+                              <td>66.97</td>
+                              <td>51.38</td>
+                              <td>57.72</td>
+                              <td>57.31</td>
+                              <td>43.81</td>
+                              <td class="mean-col">55.44</td>
+                           </tr>
+                           <tr class="group-separator">
+                              <td><strong>Ours (MM)</strong></td>
+                              <td><strong>80.16</strong></td>
+                              <td><strong>61.34</strong></td>
+                              <td><strong>73.70</strong></td>
+                              <td><strong>67.44</strong></td>
+                              <td><strong>57.85</strong></td>
+                              <td class="mean-col"><strong>68.10</strong></td>
+                           </tr>
+                           <tr>
+                              <td rowspan="3" class="row-header">Novel</td>
+                              <td>FSKD</td>
+                              <td>60.84</td>
+                              <td>47.78</td>
+                              <td>53.44</td>
+                              <td>49.21</td>
+                              <td>38.47</td>
+                              <td class="mean-col">49.95</td>
+                           </tr>
+                           <tr>
+                              <td>Ours</td>
+                              <td>59.17</td>
+                              <td>46.49</td>
+                              <td>51.89</td>
+                              <td>47.93</td>
+                              <td>37.65</td>
+                              <td class="mean-col">48.63</td>
+                           </tr>
+                           <tr class="group-separator">
+                              <td><strong>Ours (MM)</strong></td>
+                              <td><strong>67.51</strong></td>
+                              <td><strong>49.92</strong></td>
+                              <td><strong>59.05</strong></td>
+                              <td><strong>53.06</strong></td>
+                              <td><strong>43.45</strong></td>
+                              <td class="mean-col"><strong>54.60</strong></td>
+                           </tr>
+                           <!-- UNSEEN Group -->
+                           <tr>
+                              <td rowspan="6" class="row-header">Unseen</td>
+                              <td rowspan="3" class="row-header">Base</td>
+                              <td>FSKD</td>
+                              <td>56.38</td>
+                              <td>48.24</td>
+                              <td>51.29</td>
+                              <td>49.77</td>
+                              <td>43.95</td>
+                              <td class="mean-col">49.93</td>
+                           </tr>
+                           <tr>
+                              <td>Ours</td>
+                              <td>55.67</td>
+                              <td>46.94</td>
+                              <td>50.47</td>
+                              <td>48.21</td>
+                              <td>42.88</td>
+                              <td class="mean-col">48.83</td>
+                           </tr>
+                           <tr class="group-separator">
+                              <td><strong>Ours (MM)</strong></td>
+                              <td><strong>57.68</strong></td>
+                              <td><strong>52.06</strong></td>
+                              <td><strong>51.75</strong></td>
+                              <td><strong>52.27</strong></td>
+                              <td><strong>47.74</strong></td>
+                              <td class="mean-col"><strong>52.30</strong></td>
+                           </tr>
+                           <tr>
+                              <td rowspan="3" class="row-header">Novel</td>
+                              <td>FSKD</td>
+                              <td>52.36</td>
+                              <td>44.07</td>
+                              <td>47.94</td>
+                              <td>42.77</td>
+                              <td>36.60</td>
+                              <td class="mean-col">44.75</td>
+                           </tr>
+                           <tr>
+                              <td>Ours</td>
+                              <td>50.88</td>
+                              <td>43.34</td>
+                              <td>46.67</td>
+                              <td>42.52</td>
+                              <td>35.19</td>
+                              <td class="mean-col">43.72</td>
+                           </tr>
+                           <tr>
+                              <td><strong>Ours (MM)</strong></td>
+                              <td><strong>54.61</strong></td>
+                              <td><strong>45.92</strong></td>
+                              <td><strong>48.02</strong></td>
+                              <td><strong>43.86</strong></td>
+                              <td><strong>40.31</strong></td>
+                              <td class="mean-col"><strong>46.54</strong></td>
+                           </tr>
+                     </tbody>
+                  </table>
+               </div>
+
+               <h5 class="subtitle has-text-centered">
+               A quantitative comparison of the proposed method on query photos using photo only as support and both edgemap and photos (MM) as support. Additional modalities like sketch or edgemap along with photo in the support set provide additional guidance and boost performance.
+               </h5>
+            </div>
+         </div>
+      </div>
+   </div>
+   </div>
+   </section>
+
+
+   <section class="section" id="BibTeX">
+      <div class="container is-max-desktop content">
+         <h2 class="title">BibTeX</h2>
+         <pre><code>@inproceedings{maity2025dykp,
+title={Doodle Your Keypoints: Sketch-Based Few-Shot Keypoint Detection},
+author={Subhajit Maity and Ayan Kumar Bhunia and Subhadeep Koley and Pinaki Nath Chowdhury and Aneeshan Sain and Yi-Zhe Song},
+booktitle={IEEE/CVF International Conference on Computer Vision (ICCV)},
+year={2025}}</code></pre>
+      </div>
+   </section>
+   <script>
+      const viewers = document.querySelectorAll(".image-compare");
+      viewers.forEach((element) => {
+          let view = new ImageCompare(element, {
+              hoverStart: true,
+              addCircle: true
+          }).mount();
+      });
+      
+      $(document).ready(function () {
+          var editor = CodeMirror.fromTextArea(document.getElementById("bibtex"), {
+              lineNumbers: false,
+              lineWrapping: true,
+              readOnly: true
+          });
+          $(function () {
+              $('[data-toggle="tooltip"]').tooltip()
+          })
+      });
+   </script>
+   <br>
+   <p style="text-align:center"> Copyright: <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"> CC BY-NC-SA 4.0</a> © Subhajit Maity | Last updated: 10 Jul 2025 |Template Credit: <a href="https://nerfies.github.io/"> Nerfies</a></p>
+   </body>
+</html>
